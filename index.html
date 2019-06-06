@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cars</title>
+    <title>Cars-Details</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css">
 </head>
 <body>
@@ -16,7 +16,7 @@
                     {{result.name}}
                 </div>
                 <div class="card-section">
-                    <p><img src="{{result.photo}}"></p>
+                    <p><img v-bind:src="result.photo"></p>
                 </div>
                 <div class="card-section">
                     <p>{{result.price}}</p>
