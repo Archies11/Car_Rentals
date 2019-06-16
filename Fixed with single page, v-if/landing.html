@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cars-Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css">
+</head>
+<body>
+    <div id="app">
+    <!--Search box-->
+    <div class="container" v-if="!showResults">
+    <section class="callout secondary">
+        <h5 class="text-center">Rent-A-Car</h5>
+        <form>
+          <div class="row">
+            <div class="large-6 columns">
+              <select v-model="location">
+                <option v-for="location in locations" :value="location">{{ location }}</option>
+              </select>
+            </div>
+            <div class="medium-6 columns">
+              <a @click="getPosts(location)" class="button expanded">Find</a>
+            </div>
+          </div>
+        </form>
+      </section>
+      </div>
+
+      <!--Results-->
+      <div class="container" v-if="showResults">
+        <h3 class="text-center">Car Rental</h3>
+        <div class="columns medium-3" v-for="result in results">
+            <div class="card">
+                <div class="card-divider">
+                    {{result.name}}
+                </div>
+                <div class="card-section">
+                    <p><img v-bind:src="result.photo"></p>
+                </div>
+                <div class="card-section">
+                    <p>{{result.price}}</p>
+                </div>
+                <div class="card-section">
+                    <p>{{result.location}}</p>
+                </div>
+                <div class="card-section">
+                    <p>{{result.seats}}</p>
+                </div>
+                <div class="card-section">
+                    <p>{{result.fuel_type}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
