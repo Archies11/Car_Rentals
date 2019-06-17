@@ -18,14 +18,21 @@
                 <option v-for="location in locations" :value="location">{{ location }}</option>
               </select>
             </div>
-            <div class="medium-6 columns">
-              <a @click="getPosts(location)" href="index.html" class="button expanded">Find</a>
+            <div class="large-6 columns">
+              <select v-model="date">
+                <option v-for="date in dates" :value="date">{{ date }}</option>
+              </select>
             </div>
+            <div class="medium-6 columns">
+              <a @click="getPosts(location,date)" class="button expanded">Submit</a>
+            </div>
+          </div>
           </div>
         </form>
       </section>
       </div>
     <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="app.js"></script>
 </body>

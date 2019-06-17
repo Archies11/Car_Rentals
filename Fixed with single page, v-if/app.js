@@ -1,4 +1,5 @@
 const LOCATIONS = "Koramangala,HSR Layout,Indiranagar";
+const DATES = "Mon,Tues,Wednes,Thurs,Fri,Satur,Sun";
 
 const vm = new Vue ({
     el : '#app' ,
@@ -7,6 +8,8 @@ const vm = new Vue ({
         results: [],
         locations: LOCATIONS.split(','),
         location: 'Kormangala',
+        dates: DATES.split(','),
+        date: '',
         showResults: false
     },
     mounted() {
@@ -21,8 +24,7 @@ const vm = new Vue ({
             posts.map(post => {
                 if(post.location === this.location){
                     this.results.push({name:post.name,photo:post.photo,price:post.price,location:post.location,seats:post.seats,fuel_type:post.fuel_type});
-                    this.showResults = true
-                }
+                    this.showResults = true;}
             });
         } 
     }
