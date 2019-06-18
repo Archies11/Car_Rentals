@@ -44,6 +44,9 @@
                 <div class="card-section">
                     <p><img v-bind:src="result.photo"></p>
                 </div>
+                <div class="card-section" v-if="!present">
+                  <p>Not Available</p>
+                </div>
                 <div class="card-section">
                     <p>{{result.price}}</p>
                 </div>
