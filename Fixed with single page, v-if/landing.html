@@ -36,7 +36,7 @@
       <!--Results-->
       <div class="container" v-if="showResults">
         <h3 class="text-center">Car Rental</h3>
-        <div class="columns medium-3" v-for="result in results">
+        <div class="columns medium-3" v-for="result,i in results">
             <div class="card">
                 <div class="card-divider">
                     {{result.name}}
@@ -44,7 +44,7 @@
                 <div class="card-section">
                     <p><img v-bind:src="result.photo"></p>
                 </div>
-                <div class="card-section" v-if="!present">
+                <div class="card-section" v-if="!presents[i]">
                   <p>Not Available</p>
                 </div>
                 <div class="card-section">
@@ -57,8 +57,11 @@
                     <p>{{result.seats}}</p>
                 </div>
                 <div class="card-section">
-                    <p>{{result.fuel_type}}</p>
+                    <p>{{result.fuel_Type}}</p>
                 </div>
+                <div class="card-section">
+                  <button @click="selected">Select</button>
+              </div>
             </div>
         </div>
     </div>

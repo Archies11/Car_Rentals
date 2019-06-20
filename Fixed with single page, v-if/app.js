@@ -11,7 +11,7 @@ const vm = new Vue ({
         dates: DATES.split(','),
         date: '',
         showResults: false,
-        present: false
+        presents: []
     },
     mounted() {
         this.getPosts(this.location,this.date);
@@ -19,20 +19,24 @@ const vm = new Vue ({
     methods: {
         getPosts(location,date) {
             this.showResults = false
-            this.present = true
             axios.get("https://api.sheety.co/311576ae-321a-43e3-9a5b-61b3ac373d85")
             .then(response => {this.initial_results = response.data });
             let posts = this.initial_results;
             posts.map(post => {
                 if(post.location === this.location){
-                    this.results.push({name:post.name,photo:post.photo,price:post.price,location:post.location,seats:post.seats,fuel_type:post.fuel_type});
+                    this.results.push({name:post.name,photo:post.photo,price:post.price,location:post.location,seats:post.seats,fuel_Type:post.fuel_Type});
                     this.showResults = true;
-                    let avails = post.availabilty.split(',');
-                    avails.map(avail => {
-                        if(avail==this.date){
-                            this.present = true;
+                    let avails = post.availability.split(',');
+                    let flag=false;
+                    for(var i=0;i<avails.length;i++)
+                    {
+                        if(avails[i]===this.date)
+                        {
+                            flag=true;
+                            break;
                         }
-                    });
+                    }
+                    this.presents.push(flag);
                 }
             });
         } 
