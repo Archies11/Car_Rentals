@@ -36,6 +36,18 @@
       <!--Results-->
       <div class="container" v-if="showResults">
         <h3 class="text-center">Car Rental</h3>
+        <form>
+          <div class="row">
+            <div class="large-6 columns">
+              <select v-model="fuel">
+                <option v-for="fuel in fuels" :value="fuel">{{ fuel }}</option>
+              </select>
+            </div>
+            <div class="medium-6 columns">
+              <a @click="getFilters(fuel)" class="button expanded">Filter</a>
+            </div>
+          </div>
+        </form>
         <div class="columns medium-3" v-for="result,i in results">
             <div class="card">
                 <div class="card-divider">
@@ -60,7 +72,7 @@
                     <p>{{result.fuel_Type}}</p>
                 </div>
                 <div class="card-section">
-                  <button @click="selected">Select</button>
+                  <button @click="selected(i)">Select</button>
               </div>
             </div>
         </div>

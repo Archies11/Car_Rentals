@@ -11,10 +11,13 @@ const vm = new Vue ({
         dates: DATES.split(','),
         date: '',
         showResults: false,
-        presents: []
+        presents: [],
+        select: false,
+        i: 0
     },
     mounted() {
         this.getPosts(this.location,this.date);
+        this.selected(this.i);
     },
     methods: {
         getPosts(location,date) {
@@ -39,6 +42,13 @@ const vm = new Vue ({
                     this.presents.push(flag);
                 }
             });
-        } 
+        },
+        selected(i) {
+            this.select=false
+            if(presents[i] === true)
+            {
+                this.select=true
+            }
+        }
     }
 });
