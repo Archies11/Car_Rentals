@@ -48,7 +48,7 @@
             </div>
           </div>
         </form>
-        <div class="columns medium-3" v-for="result,i in results">
+        <div class="columns medium-3" v-for="result,i in results" v-if="!fuel_filter">
             <div class="card">
                 <div class="card-divider">
                     {{result.name}}
@@ -76,6 +76,34 @@
               </div>
             </div>
         </div>
+        <div class="columns medium-3" v-for="fuel,i in fuels_filter" v-if="fuel_filter">
+          <div class="card">
+              <div class="card-divider">
+                  {{fuel.name}}
+              </div>
+              <div class="card-section">
+                  <p><img v-bind:src="fuel.photo"></p>
+              </div>
+              <div class="card-section" v-if="!fuel.present">
+                <p>Not Available</p>
+              </div>
+              <div class="card-section">
+                  <p>{{fuel.price}}</p>
+              </div>
+              <div class="card-section">
+                  <p>{{fuel.location}}</p>
+              </div>
+              <div class="card-section">
+                  <p>{{fuel.seats}}</p>
+              </div>
+              <div class="card-section">
+                  <p>{{fuel.fuel_Type}}</p>
+              </div>
+              <div class="card-section">
+                <button @click="selected(i)">Select</button>
+            </div>
+          </div>
+      </div>
     </div>
     </div>
     <script src="https://unpkg.com/vue"></script>

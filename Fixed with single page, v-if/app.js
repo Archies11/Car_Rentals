@@ -1,23 +1,29 @@
 const LOCATIONS = "Koramangala,HSR Layout,Indiranagar";
 const DATES = "Mon,Tue,Wed,Thu,Fri,Sat,Sun";
+const FUELS = "Petrol,Diesel"
 
 const vm = new Vue ({
     el : '#app' ,
     data : {
         initial_results: [],
         results: [],
+        fuels_filter:[],
         locations: LOCATIONS.split(','),
         location: 'Kormangala',
         dates: DATES.split(','),
         date: '',
+        fuels: FUELS.split(','),
+        fuel: '',
         showResults: false,
         presents: [],
         select: false,
+        fuel_filter: false,
         i: 0
     },
     mounted() {
         this.getPosts(this.location,this.date);
         this.selected(this.i);
+        this.getFilters(this.fuel);
     },
     methods: {
         getPosts(location,date) {
@@ -27,7 +33,7 @@ const vm = new Vue ({
             let posts = this.initial_results;
             posts.map(post => {
                 if(post.location === this.location){
-                    this.results.push({name:post.name,photo:post.photo,price:post.price,location:post.location,seats:post.seats,fuel_Type:post.fuel_Type});
+                    this.results.push({name:post.name,photo:post.photo,price:post.price,location:post.location,seats:post.seats,fuel_Type:post.fuel_Type,transmission:post.transmission,car_Type:post.car_Type,availability:post.availability,presents:false});
                     this.showResults = true;
                     let avails = post.availability.split(',');
                     let flag=false;
@@ -48,6 +54,16 @@ const vm = new Vue ({
             if(presents[i] === true)
             {
                 this.select=true
+            }
+        },
+        getFilters(fuel) {
+            this.fuel_filter=false;
+            for(var i=0;i<results.length;i++){
+                if(results[i].fuel_Type === this.fuel)
+                {
+                    this.fuels_filter.push({name:results[i].name,photo:results[i].photo,location:results[i].location,seats:results[i].seats,fuel_Type:results[i].fuel_Type,transmission:results[i].transmission,car_Type:results[i].car_Type,present:presents[i]});
+                    this.fuel_filter=true;
+                }
             }
         }
     }
