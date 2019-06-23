@@ -61,7 +61,7 @@ const vm = new Vue ({
             for(var i=0;i<this.results.length;i++){
                 if(this.results[i].fuel_Type === this.fuel)
                 {
-                    this.fuels_filter.push({name:this.results[i].name,photo:this.results[i].photo,location:this.results[i].location,seats:this.results[i].seats,fuel_Type:this.results[i].fuel_Type,transmission:this.results[i].transmission,car_Type:this.results[i].car_Type,present:this.presents[i]});
+                    this.fuels_filter.push({name:this.results[i].name,photo:this.results[i].photo,location:this.results[i].location,seats:this.results[i].seats,fuel_Type:this.results[i].fuel_Type,transmission:this.results[i].transmission,car_Type:this.results[i].car_Type,price:this.results[i].price,present:this.presents[i]});
                     this.fuel_filter=true;
                 }
             }
