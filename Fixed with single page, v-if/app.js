@@ -1,29 +1,27 @@
 const LOCATIONS = "Koramangala,HSR Layout,Indiranagar";
 const DATES = "Mon,Tue,Wed,Thu,Fri,Sat,Sun";
-const FUELS = "FUELS:,Petrol,Diesel,CAR TYPE:,Hatchback,Sedan,SUV,Mini SUV,TRANSMISSION:,Manual,Automatic"
+const FILTERS = "FUELS:,Petrol,Diesel,CAR TYPE:,Hatchback,Sedan,SUV,Mini SUV,TRANSMISSION:,Manual,Automatic"
 
 const vm = new Vue ({
     el : '#app' ,
     data : {
         initial_results: [],
         results: [],
-        fuels_filter:[],
+        gets_filter:[],
         locations: LOCATIONS.split(','),
         location: 'Kormangala',
         dates: DATES.split(','),
         date: '',
-        fuels: FUELS.split(','),
-        fuel: 'Filter By',
+        filters: FILTERS.split(','),
+        filter: 'Filter By',
         showResults: false,
         presents: [],
         select: false,
-        fuel_filter: false,
-        i: 0
+        get_filter: false
     },
     mounted() {
         this.getPosts(this.location,this.date);
-        this.selected(this.i);
-        this.getFilters(this.fuel);
+        this.getFilters(this.filter);
     },
     methods: {
         getPosts(location,date) {
@@ -48,21 +46,29 @@ const vm = new Vue ({
                     this.presents.push(flag);
                 }
             });
-        },
-        selected(i) {
-            this.select=false
-            if(presents[i] === true)
+            for(var i=0;i<this.results.length-1;i++)
             {
-                this.select=true
+                for(var j=0;j<this.results.length-i-1;j++)
+                {
+                    if(this.results[j].price>this.results[j+1].price)
+                    {
+                        var t=this.results[j];
+                        this.results[j]=this.results[j+1];
+                        this.results[j+1]=t;
+                        var t1=this.presents[j];
+                        this.presents[j]=this.presents[j+1];
+                        this.presents[j+1]=t1;
+                    }
+                }
             }
         },
-        getFilters(fuel) {
-            this.fuel_filter=false;
+        getFilters(filter) {
+            this.get_filter=false;
             for(var i=0;i<this.results.length;i++){
-                if(this.results[i].fuel_Type === this.fuel || this.results[i].car_Type === this.fuel || this.results[i].transmission === this.fuel)
+                if(this.results[i].fuel_Type === this.filter || this.results[i].car_Type === this.filter || this.results[i].transmission === this.filter)
                 {
-                    this.fuels_filter.push({name:this.results[i].name,photo:this.results[i].photo,location:this.results[i].location,seats:this.results[i].seats,fuel_Type:this.results[i].fuel_Type,transmission:this.results[i].transmission,car_Type:this.results[i].car_Type,price:this.results[i].price,present:this.presents[i]});
-                    this.fuel_filter=true;
+                    this.gets_filter.push({name:this.results[i].name,photo:this.results[i].photo,location:this.results[i].location,seats:this.results[i].seats,fuel_Type:this.results[i].fuel_Type,transmission:this.results[i].transmission,car_Type:this.results[i].car_Type,price:this.results[i].price,present:this.presents[i]});
+                    this.get_filter=true;
                 }
             }
         }
