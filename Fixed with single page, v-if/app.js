@@ -1,6 +1,6 @@
 const LOCATIONS = "Koramangala,HSR Layout,Indiranagar";
 const DATES = "Mon,Tue,Wed,Thu,Fri,Sat,Sun";
-const FUELS = "Petrol,Diesel"
+const FUELS = "FUELS:,Petrol,Diesel,CAR TYPE:,Hatchback,Sedan,SUV,Mini SUV,TRANSMISSION:,Manual,Automatic"
 
 const vm = new Vue ({
     el : '#app' ,
@@ -13,7 +13,7 @@ const vm = new Vue ({
         dates: DATES.split(','),
         date: '',
         fuels: FUELS.split(','),
-        fuel: '',
+        fuel: 'Filter By',
         showResults: false,
         presents: [],
         select: false,
@@ -59,7 +59,7 @@ const vm = new Vue ({
         getFilters(fuel) {
             this.fuel_filter=false;
             for(var i=0;i<this.results.length;i++){
-                if(this.results[i].fuel_Type === this.fuel)
+                if(this.results[i].fuel_Type === this.fuel || this.results[i].car_Type === this.fuel || this.results[i].transmission === this.fuel)
                 {
                     this.fuels_filter.push({name:this.results[i].name,photo:this.results[i].photo,location:this.results[i].location,seats:this.results[i].seats,fuel_Type:this.results[i].fuel_Type,transmission:this.results[i].transmission,car_Type:this.results[i].car_Type,price:this.results[i].price,present:this.presents[i]});
                     this.fuel_filter=true;

@@ -6,6 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Cars-Home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css">
+    <style>
+      .active{
+        background-color: green;
+      }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -35,7 +40,8 @@
 
       <!--Results-->
       <div class="container" v-if="showResults">
-        <h3 class="text-center">Car Rental</h3>
+        <section class="callout secondary">
+        <h3 class="text-center">Rent-A-Car</h3>
         <form>
           <div class="row">
             <div class="large-6 columns">
@@ -48,8 +54,9 @@
             </div>
           </div>
         </form>
+        </section>
         <div class="columns medium-3" v-for="result,i in results" v-if="!fuel_filter">
-            <div class="card">
+            <div class="card" v-bind:class="{active: select}">
                 <div class="card-divider">
                     {{result.name}}
                 </div>
@@ -66,10 +73,16 @@
                     <p>{{result.location}}</p>
                 </div>
                 <div class="card-section">
+                    <p>{{result.car_Type}}</p>
+                </div>
+                <div class="card-section">
                     <p>{{result.seats}}</p>
                 </div>
                 <div class="card-section">
                     <p>{{result.fuel_Type}}</p>
+                </div>
+                <div class="card-section">
+                    <p>{{result.transmission}}</p>
                 </div>
                 <div class="card-section">
                   <button @click="selected(i)">Select</button>
@@ -77,7 +90,7 @@
             </div>
         </div>
         <div class="columns medium-3" v-for="fuel,i in fuels_filter" v-if="fuel_filter">
-          <div class="card">
+          <div class="card" v-bind:class="{active: select}">
               <div class="card-divider">
                   {{fuel.name}}
               </div>
@@ -94,10 +107,16 @@
                   <p>{{fuel.location}}</p>
               </div>
               <div class="card-section">
+                  <p>{{fuel.car_Type}}</p>
+              </div>
+              <div class="card-section">
                   <p>{{fuel.seats}}</p>
               </div>
               <div class="card-section">
                   <p>{{fuel.fuel_Type}}</p>
+              </div>
+              <div class="card-section">
+                  <p>{{fuel.transmission}}</p>
               </div>
               <div class="card-section">
                 <button @click="selected(i)">Select</button>
