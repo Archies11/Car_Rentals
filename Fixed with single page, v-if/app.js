@@ -16,12 +16,15 @@ const vm = new Vue ({
         filter: 'Filter By',
         showResults: false,
         presents: [],
+        searches: [],
         select: false,
-        get_filter: false
+        get_filter: false,
+        get_search: false
     },
     mounted() {
         this.getPosts(this.location,this.date);
         this.getFilters(this.filter);
+        this.getSearches(this.search);
     },
     methods: {
         getPosts(location,date) {
@@ -66,6 +69,16 @@ const vm = new Vue ({
             this.get_filter=false;
             for(var i=0;i<this.results.length;i++){
                 if(this.results[i].fuel_Type === this.filter || this.results[i].car_Type === this.filter || this.results[i].transmission === this.filter)
+                {
+                    this.gets_filter.push({name:this.results[i].name,photo:this.results[i].photo,location:this.results[i].location,seats:this.results[i].seats,fuel_Type:this.results[i].fuel_Type,transmission:this.results[i].transmission,car_Type:this.results[i].car_Type,price:this.results[i].price,present:this.presents[i]});
+                    this.get_filter=true;
+                }
+            }
+        },
+        getSearches(search) {
+            this.get_search=false;
+            for(var i=0;i<this.results.length;i++){
+                if(this.results[i].fuel_Type === this.search || this.results[i].car_Type === this.search || this.results[i].transmission === this.search)
                 {
                     this.gets_filter.push({name:this.results[i].name,photo:this.results[i].photo,location:this.results[i].location,seats:this.results[i].seats,fuel_Type:this.results[i].fuel_Type,transmission:this.results[i].transmission,car_Type:this.results[i].car_Type,price:this.results[i].price,present:this.presents[i]});
                     this.get_filter=true;

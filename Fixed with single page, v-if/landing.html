@@ -53,6 +53,16 @@
               <a @click="getFilters(filter)" class="button expanded">Filter</a>
             </div>
           </div>
+          <div class="row">
+            <div class="large-6 columns">
+              <select v-model="search">
+                <input :value="search">{{ search }}</input>
+              </select>
+            </div>
+            <div class="medium-6 columns">
+              <a @click="getSearches(search)" class="button expanded">Search</a>
+            </div>
+          </div>
         </form>
         </section>
         <div class="columns medium-3" v-for="result,i in results" v-if="!get_filter">
