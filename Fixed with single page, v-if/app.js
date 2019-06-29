@@ -64,6 +64,7 @@ const vm = new Vue ({
                     }
                 }
             }
+            this.select=true;
         },
         getFilters(filter) {
             this.get_filter=false;
