@@ -66,7 +66,7 @@
         </form>
         </section>
         <div class="columns medium-3" v-for="result,i in results" v-if="!get_filter">
-            <div class="card" v-bind:class="{active: select}">
+            <div class="card" v-bind:class="{active: result.selected}">
                 <div class="card-divider">
                     {{result.name}}
                 </div>
@@ -95,7 +95,7 @@
                     <p>{{result.transmission}}</p>
                 </div>
                 <div class="card-section">
-                  <button @click=" " class="button">Select</button>
+                  <button @click="getSelected(result.selected)" class="button">Select</button>
               </div>
             </div>
         </div>

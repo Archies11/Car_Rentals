@@ -17,14 +17,14 @@ const vm = new Vue ({
         showResults: false,
         presents: [],
         searches: [],
-        select: false,
         get_filter: false,
         get_search: false
     },
     mounted() {
         this.getPosts(this.location,this.date);
         this.getFilters(this.filter);
-        this.getSearches(this.search);
+        //this.getSearches(this.search);
+        this.getSelected();
     },
     methods: {
         getPosts(location,date) {
@@ -34,7 +34,7 @@ const vm = new Vue ({
             let posts = this.initial_results;
             posts.map(post => {
                 if(post.location === this.location){
-                    this.results.push({name:post.name,photo:post.photo,price:post.price,location:post.location,seats:post.seats,fuel_Type:post.fuel_Type,transmission:post.transmission,car_Type:post.car_Type,availability:post.availability,presents:false});
+                    this.results.push({name:post.name,photo:post.photo,price:post.price,location:post.location,seats:post.seats,fuel_Type:post.fuel_Type,transmission:post.transmission,car_Type:post.car_Type,availability:post.availability,presents:false,selected:false});
                     this.showResults = true;
                     let avails = post.availability.split(',');
                     let flag=false;
@@ -76,15 +76,18 @@ const vm = new Vue ({
                 }
             }
         },
-        getSearches(search) {
-            this.get_search=false;
-            for(var i=0;i<this.results.length;i++){
-                if(this.results[i].fuel_Type === this.search || this.results[i].car_Type === this.search || this.results[i].transmission === this.search||this.results[i].)
-                {
-                    this.gets_filter.push({name:this.results[i].name,photo:this.results[i].photo,location:this.results[i].location,seats:this.results[i].seats,fuel_Type:this.results[i].fuel_Type,transmission:this.results[i].transmission,car_Type:this.results[i].car_Type,price:this.results[i].price,present:this.presents[i]});
-                    this.get_filter=true;
-                }
-            }
+        // getSearches(search) {
+        //     this.get_search=false;
+        //     for(var i=0;i<this.results.length;i++){
+        //         if(this.results[i].fuel_Type === this.search || this.results[i].car_Type === this.search || this.results[i].transmission === this.search||this.results[i].)
+        //         {
+        //             this.gets_filter.push({name:this.results[i].name,photo:this.results[i].photo,location:this.results[i].location,seats:this.results[i].seats,fuel_Type:this.results[i].fuel_Type,transmission:this.results[i].transmission,car_Type:this.results[i].car_Type,price:this.results[i].price,present:this.presents[i]});
+        //             this.get_filter=true;
+        //         }
+        //     }
+        // },
+        getSelected(selected) {
+            this.selected=!this.selected;
         }
     }
 });
