@@ -14,7 +14,7 @@
 </head>
 <body>
     <div id="app">
-    <!--Search box-->
+    <!--Front Search-->
     <div class="container" v-if="!showResults">
     <section class="callout secondary">
         <h5 class="text-center">Rent-A-Car</h5>
@@ -95,10 +95,11 @@
                     <p>{{result.transmission}}</p>
                 </div>
                 <div class="card-section">
-                  <button @click="getSelected(result.selected)" class="button">Select</button>
+                  <button v-on:click="result.selected" class="button">Select</button>
               </div>
             </div>
         </div>
+        <!--FIltered Data-->
         <div class="columns medium-3" v-for="filter,i in gets_filter" v-if="get_filter">
           <div class="card" v-bind:class="{active: select}">
               <div class="card-divider">
